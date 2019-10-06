@@ -16,8 +16,8 @@ let legend = L.control({
 
 legend.onAdd = function() {
     let div = L.DomUtil.create("div", "info legend"),
-        grades = [1, 2, 3, 4, 5],
-        labels = [];
+        grades = [0, 1, 2, 3, 4, 5],
+        labels = ["0-1", "1-2", "2-3", "3-4", "4-5", "5+"];
 
     //Create a loop o go through the density intervals and generate labels
     for (let i = 0; i < grades.length; i++) {
@@ -30,22 +30,13 @@ legend.onAdd = function() {
 };
 
 // Create function to set color based on earthquake magnitudels
-function getColor() {
-    x = Math.ceil(c);
-    switch (Math.ceil(x)) {
-        case 1:
-            return "chartreuse";
-        case 2:
-            return "greenyellow";
-        case 3:
-            return "gold";
-        case 4:
-            return "DarkOrange";
-        case 5:
-            return "Peru";
-        default:
-            return "red";
-    }
+function getColor(magnitude) {
+    return magnitude > 5 ? "red" :
+        magnitude > 4 ? "orange" :
+        magnitude > 3 ? "gold" :
+        magnitude > 2 ? "yellow" :
+        magnitude > 1 ? "yellowgreen" :
+        "greenyellow"; // <= 1 default
 }
 
 // Create function to create circular features
