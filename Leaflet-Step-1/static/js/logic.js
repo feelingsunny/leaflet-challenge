@@ -10,17 +10,17 @@ d3.json(queryUrl, function(data) {
 });
 
 // Add legend information
-let legend = L.control({
+var legend = L.control({
     position: 'bottomright'
 });
 
 legend.onAdd = function() {
-    let div = L.DomUtil.create("div", "info legend"),
+    var div = L.DomUtil.create("div", "info legend"),
         grades = [0, 1, 2, 3, 4, 5],
         labels = ["0-1", "1-2", "2-3", "3-4", "4-5", "5+"];
 
     //Create a loop o go through the density intervals and generate labels
-    for (let i = 0; i < grades.length; i++) {
+    for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
             '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
